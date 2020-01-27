@@ -1,0 +1,20 @@
+.upload-submit {
+  width: 45%;
+  border: pink 2px solid;
+  display: inline-block;
+}
+
+.about-upload {
+  width: 45%;
+  border: teal 2px solid;
+  display: inline-block;
+}
+
+.about-preview {
+  width: 100%;
+  display: block;
+  height: 2%;
+  background: white;
+  border-radius: 4px;
+  box-shadow: grey 3px;
+}
