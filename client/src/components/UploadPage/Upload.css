@@ -1,0 +1,14 @@
+.grid-container {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 5px;
+}
+
+.grid-option {
+  background: var(--box-color);
+  color: #fff;
+  text-align: center;
+  height: 300px;
+  border-radius: 6px;
+}

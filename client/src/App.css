@@ -1,0 +1,100 @@
+@import url("https://fonts.googleapis.com/css?family=Maven+Pro&display=swap");
+
+body {
+  font-family: "Maven Pro", sans-serif;
+  background: lightblue;
+}
+/* start of grid */
+
+:root {
+  --box-color: #373142;
+}
+
+.home-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 5px;
+}
+
+div.container-items {
+  background: var(--box-color);
+  color: #fff;
+  text-align: center;
+  line-height: 100px;
+}
+
+div.container-items:nth-child(1) {
+  grid-area: 1 / 1 / span 2 / span 3;
+}
+
+div.container-items:nth-child(2) {
+  grid-area: 3 / 1 / span 2 / span 2;
+}
+div.container-items:nth-child(3) {
+  /* grid-area: 4 / 4 / 5 /-1; */
+}
+
+/* end of grid */
+.nav-bar {
+  width: 100%;
+  background: grey;
+  height: 1%;
+}
+
+.nav-link {
+  display: inline-block;
+  margin: 0.75%;
+}
+
+.content-link {
+  color: plum;
+}
+
+a.content-link.visited {
+  color: plum;
+}
+
+a {
+  color: black;
+  text-decoration: none;
+}
+a:visited {
+  color: black;
+  text-decoration: none;
+}
+
+/* Small (sm) */
+@media (min-width: 640px) {
+  /* ... */
+  .title {
+    font-size: 80px;
+    display: block;
+  }
+}
+
+/* Medium (md) */
+@media (min-width: 768px) {
+  /* ... */
+  .title {
+    font-size: 120px;
+    display: inline-block;
+  }
+}
+
+/* Large (lg) */
+@media (min-width: 1024px) {
+  /* ... */
+  .title {
+    font-size: 160px;
+    display: inline-block;
+  }
+}
+
+/* Extra Large (xl) */
+@media (min-width: 1280px) {
+  /* ... */
+  .title {
+    font-size: 180px;
+    display: inline-block;
+  }
+}
