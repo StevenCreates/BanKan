@@ -1,20 +1,14 @@
-.upload-submit {
-  width: 45%;
-  border: pink 2px solid;
-  display: inline-block;
+.grid-container {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 5px;
 }
 
-.about-upload {
-  width: 45%;
-  border: teal 2px solid;
-  display: inline-block;
-}
-
-.about-preview {
-  width: 100%;
-  display: block;
-  height: 2%;
-  background: white;
-  border-radius: 4px;
-  box-shadow: grey 3px;
+.grid-option {
+  background: var(--box-color);
+  color: #fff;
+  text-align: center;
+  height: 300px;
+  border-radius: 6px;
 }
