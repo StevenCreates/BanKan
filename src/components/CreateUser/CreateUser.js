@@ -4,18 +4,9 @@ import { useSignUpForm } from "../hooks/SignUpHook";
 
 function CreateUser() {
   const onSignUp = () => {
-    fetch("/api/users/register", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(inputs)
-    })
-      .then(res => res.json())
-      .then(data => console.log(data))
-      .catch(err => console.log(err));
-    console.log(inputs);
-    console.log(`User Created! Name: ${inputs.name} Email: ${inputs.email}`);
+    console.log(
+      `User Created! Name: ${inputs.firstName} ${inputs.lastName} Email: ${inputs.email}`
+    );
   };
 
   const { inputs, handleInputChange, handleSubmit } = useSignUpForm(onSignUp);
@@ -25,12 +16,20 @@ function CreateUser() {
       <HomeNavbar />
       <form onSubmit={handleSubmit}>
         <div>
-          <label>Name</label>
+          <label>First Name</label>
           <input
             type='text'
-            name='name'
+            name='firstName'
             onChange={handleInputChange}
-            value={inputs.Name}
+            value={inputs.firstName}
+            required
+          />
+          <label>Last Name</label>
+          <input
+            type='text'
+            name='lastName'
+            onChange={handleInputChange}
+            value={inputs.lastName}
             required
           />
         </div>
@@ -48,7 +47,7 @@ function CreateUser() {
           <label>Password</label>
           <input
             type='password'
-            name='password'
+            name='password1'
             onChange={handleInputChange}
             value={inputs.password1}
           />

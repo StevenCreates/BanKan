@@ -1,30 +1,15 @@
-import React, { useState, useContext } from "react";
+import React from "react";
 import HomeNavbar from "../HomeNavbar";
 import { useLoginForm } from "../hooks/LoginHook";
 
 function Login() {
-  const [loggedin, setUser] = useState({});
-
-  const onLogin = () => {
-    fetch("/api/users/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(inputs)
-    })
-      .then(res => res.json())
-      .then(data => setUser(data))
-      .catch(err => console.log(err));
-    console.log(inputs);
-    console.log(loggedin);
-    console.log(`User Logged In! Email: ${inputs.email}`);
+  const onSignUp = () => {
     console.log(
       `User Created! Name: ${inputs.firstName} ${inputs.lastName} Email: ${inputs.email}`
     );
   };
 
-  const { inputs, handleInputChange, handleSubmit } = useLoginForm(onLogin);
+  const { inputs, handleInputChange, handleSubmit } = useLoginForm(onSignUp);
 
   return (
     <div>
@@ -44,7 +29,7 @@ function Login() {
           <label>Password</label>
           <input
             type='password'
-            name='password'
+            name='password1'
             onChange={handleInputChange}
             value={inputs.password1}
           />
