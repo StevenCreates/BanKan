@@ -2,7 +2,6 @@ import { useState, useContext } from "react";
 
 export const useLoginForm = callback => {
   const [inputs, setInputs] = useState({});
-
   const handleSubmit = event => {
     if (event) {
       event.preventDefault();
