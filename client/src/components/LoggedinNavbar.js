@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { RootContext } from "../context/RootContext";
 
 function LoggedinNavbar() {
+  const { userState } = useContext(RootContext);
+
   return (
     <div className='nav-bar'>
       <Link className='nav-link' to='/'>
@@ -19,6 +22,7 @@ function LoggedinNavbar() {
       <Link className='nav-link' to='/logout'>
         Logout
       </Link>
+      <div>Logged In As:{userState.name}</div>
     </div>
   );
 }

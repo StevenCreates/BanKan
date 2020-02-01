@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { RootContext } from "../context/RootContext";
 
 function HomeNavbar() {
+  const { userState } = useContext(RootContext);
+
   return (
     <div className='nav-bar'>
       <Link className='nav-link' to='/'>
@@ -13,6 +16,10 @@ function HomeNavbar() {
       <Link className='nav-link' to='/createuser'>
         New User
       </Link>
+      <Link className='nav-link' to='/upload'>
+        New Post
+      </Link>
+      <div>Logged In As:{userState.name}</div>
     </div>
   );
 }

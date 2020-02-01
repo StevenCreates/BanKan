@@ -15,9 +15,7 @@ function App() {
     return (
       <Route
         {...routeProps}
-        render={() =>
-          authenticated ? render({ Feed }) : <Redirect to='/login' />
-        }
+        render={() => (authenticated ? render() : <Redirect to='/login' />)}
       />
     );
   };
@@ -28,7 +26,7 @@ function App() {
         <Switch>
           <Route path='/' component={Home} exact />
           <Route path='/login' component={Login} />
-          <AuthenticatedRoute path='/feed' component={Feed} />
+          <Route path='/feed' component={Feed} />
           <Route path='/upload' component={UploadPage} />
           <Route path='/createuser' component={CreateUser} />
           <Route component={Error} />
