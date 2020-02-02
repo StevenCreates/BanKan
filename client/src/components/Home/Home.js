@@ -1,9 +1,7 @@
 import React from "react";
 import HomeNavbar from "../HomeNavbar";
-import test from "../Test";
 
 function Home() {
-  test();
   return (
     <div>
       <HomeNavbar />

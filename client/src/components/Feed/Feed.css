@@ -1,0 +1,12 @@
+.feed-card {
+  border-radius: 6px;
+  box-shadow: var(--box-shadow);
+  background: var(--box-color);
+  color: #fff;
+  height: 100px;
+  border-radius: 6px;
+}
+
+.feed-container {
+  margin-left: 30%;
+}

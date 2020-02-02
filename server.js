@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const passport = require("passport");
 const users = require("./routes/api/users");
+const posts = require("./routes/api/posts");
 const app = express();
 const path = require("path");
 var cors = require("cors");
@@ -31,6 +32,7 @@ mongoose
 app.use(passport.initialize()); // Passport config
 require("./config/passport")(passport); // Routes
 app.use("/api/users", users);
+app.use("/api/posts", posts);
 
 app.get("*", function(req, res) {
   res.sendFile(path.join(__dirname, "./client/build/index.html"));
