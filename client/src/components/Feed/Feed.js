@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./Feed.css";
 import LoggedinNavbar from "../LoggedinNavbar";
+import { Link } from "react-router-dom";
 
 function Feed() {
   const [post, setPost] = useState([]);
@@ -33,6 +34,8 @@ function Feed() {
           <div className='feed-card'>
             <div>Title: {post.title}</div>
             <div>Body: {post.body}</div>
+            <div>Creator: {post.user}</div>
+            <a href={post.link}>Check It Out</a>
           </div>
         ))}
       </div>

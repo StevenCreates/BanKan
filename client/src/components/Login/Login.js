@@ -1,9 +1,7 @@
-import React, { useState, useContext, useHistory } from "react";
+import React, { useContext } from "react";
 import HomeNavbar from "../HomeNavbar";
 import { useLoginForm } from "../hooks/LoginHook";
 import { RootContext } from "../../context/RootContext";
-import Feed from "../Feed/Feed";
-// import { Link } from "react-router-dom";
 
 function Login() {
   const { setUser } = useContext(RootContext);

@@ -6,15 +6,14 @@ function Home() {
     <div>
       <HomeNavbar />
       <div className='home-container'>
+        <div className='container-items'>1</div>
         <div class='container-items'>
-          <h1 class='home-title'>BanKan</h1>
-          <h3>Sound Sharing</h3>
+          <h1 className='home-title'>
+            <span className='home-text'>BanKan</span>{" "}
+          </h1>
         </div>
-        <div class='container-items'>2</div>
         <div class='container-items'>3</div>
         <div class='container-items'>4</div>
-        <div class='container-items'>5</div>
-        <div class='container-items'>6</div>
       </div>
     </div>
   );

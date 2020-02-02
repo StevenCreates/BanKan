@@ -3,18 +3,16 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const PostSchema = new Schema({
-  //   id: {
-  //     type: String,
-  //     required: true
-  //   },
+  id: {
+    type: String
+  },
   title: {
     type: String,
     requuired: true
   },
-  //   avatarColor: {
-  //     type: Number,
-  //     required: true
-  //   },
+  link: {
+    type: String
+  },
   //   comments: {
   //     type: [
   //       {
@@ -34,14 +32,11 @@ const PostSchema = new Schema({
   //     required: true
   //   },
   body: {
-    type: String,
-    trim: true,
-    required: true
+    type: String
+  },
+  user: {
+    type: String
   }
-  //   timestamp: {
-  //     type: Number,
-  //     required: true
-  //   }
 });
 
 module.exports = mongoose.model("Posts", PostSchema);

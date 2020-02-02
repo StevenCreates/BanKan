@@ -13,6 +13,8 @@ router.post("/newpost", async (req, res) => {
   const newPost = new Post({
     // id: req.body.id,
     title: req.body.title,
+    user: req.body.user,
+    link: req.body.link,
     // avatarColor: req.body.avatarColor || 0,
     // comments: [],
     // likers: [],

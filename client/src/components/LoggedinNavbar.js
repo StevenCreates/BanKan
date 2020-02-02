@@ -22,7 +22,7 @@ function LoggedinNavbar() {
       <Link className='nav-link' to='/logout'>
         Logout
       </Link>
-      <div>Logged In As:{userState.name}</div>
+      <div className='nav-link'>Logged In As:{userState.name}</div>
     </div>
   );
 }
