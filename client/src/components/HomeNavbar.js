@@ -11,7 +11,7 @@ function HomeNavbar() {
         <Link className='nav-usable nav-left' to='/login'>
           Login
         </Link>
-        <Link className='nav-usable' to='/createuser'>
+        <Link className='nav-usable nav-new-user' to='/createuser'>
           New User
         </Link>
       </div>
@@ -21,11 +21,11 @@ function HomeNavbar() {
       </Link>
       <div className='nav-link'></div>
       <div className='nav-link'>
-        <Link className='nav-usable' to='/Upload'>
+        <Link className='nav-usable' to='/feed'>
           Feed
         </Link>
         <Link className='nav-usable nav-right' to='/upload'>
-          New User
+          New Post
         </Link>
       </div>
     </div>

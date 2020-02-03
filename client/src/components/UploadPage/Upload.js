@@ -13,9 +13,7 @@ export default function Upload() {
     event.preventDefault();
     let file = fileInput.current.files[0];
     let newFileName = fileInput.current.files[0].name;
-    const config = {
-      // insertconfig here
-    };
+
     const ReactS3Client = new S3(config);
 
     ReactS3Client.uploadFile(file, newFileName).then(data => {
