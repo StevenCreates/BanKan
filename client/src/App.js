@@ -7,8 +7,9 @@ import UploadPage from "./components/UploadPage/UploadPage";
 import "./App.css";
 import CreateUser from "./components/CreateUser/CreateUser";
 import RootContext from "./context/RootContext";
+import Profile from "./components/Profile/Profile";
 import { AuthenticatedRoute } from "./AuthenticateRoute";
-// import AuthenticatedRoute from "./AuthenticatedRoute";
+import ProfileCard from "./components/Profile/ProfileCard";
 
 function App() {
   return (
@@ -17,9 +18,13 @@ function App() {
         <Switch>
           <Route path='/' component={Home} exact />
           <Route path='/login' component={Login} />
-          <AuthenticatedRoute path='/feed' component={Feed} />
-          <Route path='/upload' component={UploadPage} />
           <Route path='/createuser' component={CreateUser} />
+          <Route path='/aboutme' component={ProfileCard} />
+          <AuthenticatedRoute>
+            <Route path='/feed' component={Feed} />
+            <Route path='/upload' component={UploadPage} />
+            <Route path='/profile' component={Profile} />
+          </AuthenticatedRoute>
           <Route component={Error} />
         </Switch>
       </BrowserRouter>

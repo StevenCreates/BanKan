@@ -1,15 +1,15 @@
-import React, { useEffect, useState, useRef } from "react";
-import "./Feed.css";
+import React, { useEffect, useState } from "react";
 import LoggedinNavbar from "../LoggedinNavbar";
+import Footer from "../Footer";
 
-function Feed() {
+function Profile() {
   const [post, setPost] = useState([]);
-  const [postid, setPostID] = useState("");
-  // const ref = useRef();
-
+  let id = { id: "5e3393491e1004801d8f500f" };
+  // this .fetch gets all of the stored posts
   const loadPosts = () => {
-    fetch("/api/posts/oldpost/", {
-      method: "GET"
+    fetch("/api/posts/findme/", {
+      method: "POST",
+      body: JSON.stringify(id)
     })
       .then(res => res.json())
       .then(data => {
@@ -17,11 +17,6 @@ function Feed() {
         setPost(data);
       })
       .catch(err => console.log(err));
-  };
-
-  const handleClick = event => {
-    setPostID(event.target.id);
-    console.log(event.target.value);
   };
 
   //this waits until the window has loaded to run the Load Post function
@@ -32,23 +27,21 @@ function Feed() {
   return (
     <div>
       <LoggedinNavbar />
-      <div className='feed-container'>
-        <div>Feed</div>
+      <div className='profile-container'>
+        <div>Profile</div>
         {/* Here we are mapping the data we recieve from the .fetch into a feed card */}
         {post.map(post => (
-          <div className='feed-card'>
-            <div>Title: {post.title}</div>
-            <div>Body: {post.body}</div>
+          <div className='profile-card'>
             <div>Creator: {post.user}</div>
-            <a href={post.link}>Check It Out</a>
-            <button id={post.id} onClick={handleClick}>
-              Comment
-            </button>
+            <div>Title: {post.title}</div>
+            <a href={post.link}>Link</a>
+            <div>Body: {post.body}</div>
           </div>
         ))}
       </div>
+      <Footer />
     </div>
   );
 }
 
-export default Feed;
+export default Profile;

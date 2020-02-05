@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 const passport = require("passport");
 const users = require("./routes/api/users");
 const posts = require("./routes/api/posts");
+const profile = require("./routes/api/profile");
 const app = express();
 const path = require("path");
 var cors = require("cors");
@@ -33,6 +34,7 @@ app.use(passport.initialize()); // Passport config
 require("./config/passport")(passport); // Routes
 app.use("/api/users", users);
 app.use("/api/posts", posts);
+app.use("/api/profile", profile);
 
 app.get("*", function(req, res) {
   res.sendFile(path.join(__dirname, "./client/build/index.html"));

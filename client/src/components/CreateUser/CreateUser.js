@@ -1,6 +1,8 @@
 import React from "react";
 import HomeNavbar from "../HomeNavbar";
 import { useSignUpForm } from "../hooks/SignUpHook";
+import "./CreateUser.css";
+import Footer from "../Footer";
 
 function CreateUser() {
   const onSignUp = () => {
@@ -23,47 +25,51 @@ function CreateUser() {
   return (
     <div>
       <HomeNavbar />
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Name</label>
-          <input
-            type='text'
-            name='name'
-            onChange={handleInputChange}
-            value={inputs.Name}
-            required
-          />
-        </div>
-        <div>
-          <label>Email Address</label>
-          <input
-            type='email'
-            name='email'
-            onChange={handleInputChange}
-            value={inputs.email}
-            required
-          />
-        </div>
-        <div>
-          <label>Password</label>
-          <input
-            type='password'
-            name='password'
-            onChange={handleInputChange}
-            value={inputs.password1}
-          />
-        </div>
-        <div>
-          <label>Re-enter Password</label>
-          <input
-            type='password'
-            name='password2'
-            onChange={handleInputChange}
-            value={inputs.password2}
-          />
-        </div>
-        <button type='submit'>Sign Up</button>
-      </form>
+      <div className='create-container'>
+        <form onSubmit={handleSubmit}>
+          <p className='create-text'>Create User</p>
+          <div>
+            <input
+              placeholder='Name'
+              type='text'
+              name='name'
+              onChange={handleInputChange}
+              value={inputs.Name}
+              required
+            />
+          </div>
+          <div>
+            <input
+              placeholder='Email'
+              type='email'
+              name='email'
+              onChange={handleInputChange}
+              value={inputs.email}
+              required
+            />
+          </div>
+          <div>
+            <input
+              placeholder='Password'
+              type='password'
+              name='password'
+              onChange={handleInputChange}
+              value={inputs.password1}
+            />
+          </div>
+          <div>
+            <input
+              placeholder='Password Again'
+              type='password'
+              name='password2'
+              onChange={handleInputChange}
+              value={inputs.password2}
+            />
+          </div>
+          <button type='submit'>Sign Up</button>
+        </form>
+      </div>
+      <Footer />
     </div>
   );
 }

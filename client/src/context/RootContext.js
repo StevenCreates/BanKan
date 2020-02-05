@@ -8,15 +8,22 @@ export default ({ children }) => {
     id: 0
   });
 
+  const [authenticated, setAuthenticated] = useState({
+    authenticated: false
+  });
+
   useEffect(() => {
     window.localStorage.setItem("success", userState.success);
     window.localStorage.setItem("token", userState.token);
     window.localStorage.setItem("id", userState.id);
-  }, [userState]);
+    window.localStorage.setItem("authenticated", authenticated.authenticated);
+  }, [userState, authenticated]);
 
   const defaultContext = {
     userState,
-    setUser
+    setUser,
+    setAuthenticated,
+    authenticated
   };
   return (
     <RootContext.Provider value={defaultContext}>

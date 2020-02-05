@@ -9,19 +9,23 @@ router.get("/oldpost", async (req, res) => {
   res.status(200).json(posts);
 });
 
+router.post("/findme/", async (req, res) => {
+  // const { id } = req.params;
+  // const query = req.params.query;
+  const posts = await Post.find({ id: "5e3393491e1004801d8f500f" });
+  res.status(200).json(posts);
+});
+
 router.post("/newpost", async (req, res) => {
   const newPost = new Post({
-    // id: req.body.id,
     title: req.body.title,
     user: req.body.user,
     link: req.body.link,
-    // avatarColor: req.body.avatarColor || 0,
-    // comments: [],
-    // likers: [],
-    // likesCount: 0,
+    id: req.body.id,
     body: req.body.body,
     timestamp: new Date().getTime()
   });
+
   try {
     const post = await newPost.save();
     return res.status(201).json(post);

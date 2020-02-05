@@ -15,6 +15,12 @@ const User = require("../../models/User");
 // @route POST api/users/register
 // @desc Register user
 // @access Public
+
+router.post("/profile", (req, res) => {
+  User.findOne({ email: req.body.email });
+  res.status(200).json(posts);
+});
+
 router.post("/register", (req, res) => {
   // Form validation
 

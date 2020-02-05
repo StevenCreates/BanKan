@@ -15,14 +15,6 @@ div.container-items {
   color: #fff;
 }
 
-/* div.container-items:nth-child(1) {
-  grid-area: 1 / 1 / span -3 / span 1;
-}
-
-div.container-items:nth-child(2) {
-  grid-area: 1 / 2 / span 3 / span 1;
-} */
-
 .fun-text {
   background: transparent !important;
   text-align: center;
