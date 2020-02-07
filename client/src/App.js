@@ -6,20 +6,29 @@ import Feed from "./components/Feed/Feed";
 import UploadPage from "./components/UploadPage/UploadPage";
 import "./App.css";
 import CreateUser from "./components/CreateUser/CreateUser";
-export const AppContext = React.createContext();
+import RootContext from "./context/RootContext";
+import Profile from "./components/Profile/Profile";
+import { AuthenticatedRoute } from "./AuthenticateRoute";
+import ProfileCard from "./components/Profile/ProfileCard";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Switch>
-        <Route path='/' component={Home} exact />
-        <Route path='/login' component={Login} />
-        <Route path='/feed' component={Feed} />
-        <Route path='/upload' component={UploadPage} />
-        <Route path='/createuser' component={CreateUser} />
-        <Route component={Error} />
-      </Switch>
-    </BrowserRouter>
+    <RootContext>
+      <BrowserRouter>
+        <Switch>
+          <Route path='/' component={Home} exact />
+          <Route path='/login' component={Login} />
+          <Route path='/createuser' component={CreateUser} />
+          <Route path='/aboutme' component={ProfileCard} />
+          <AuthenticatedRoute>
+            <Route path='/feed' component={Feed} />
+            <Route path='/upload' component={UploadPage} />
+            <Route path='/profile' component={Profile} />
+          </AuthenticatedRoute>
+          <Route component={Error} />
+        </Switch>
+      </BrowserRouter>
+    </RootContext>
   );
 }
 

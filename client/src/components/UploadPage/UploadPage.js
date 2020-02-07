@@ -1,6 +1,6 @@
 import React from "react";
 import Upload from "./Upload";
-import AboutUpload from "./AboutUpload";
+import Footer from "../Footer";
 import "./Upload.css";
 import LoggedinNavbar from "../LoggedinNavbar";
 
@@ -10,8 +10,8 @@ const UploadPage = () => {
       <LoggedinNavbar />
       <div className='container grid-container'>
         <Upload />
-        <AboutUpload />
       </div>
+      <Footer />
     </div>
   );
 };

@@ -1,0 +1,19 @@
+.feed-card {
+  box-shadow: var(--box-shadow);
+  background: white;
+  color: #black;
+  height: 20vh;
+  width: 60vw;
+  margin-bottom: 1%;
+  margin-right: 1%;
+  scroll-snap-align: start;
+}
+
+.feed-container {
+  margin-left: 30%;
+  scroll-snap-type: mandatory;
+  scroll-snap-points-y: repeat(3rem);
+  scroll-snap-type: y mandatory;
+  max-height: 95vh;
+  overflow-y: scroll;
+}

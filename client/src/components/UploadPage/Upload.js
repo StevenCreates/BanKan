@@ -1,56 +1,98 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useRef, useContext } from "react";
 import S3 from "react-aws-s3";
+import { usePost } from "../hooks/PostHook";
+import { RootContext } from "../../context/RootContext";
 
-class Upload extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.fileInput = React.createRef();
-    this.state = {
-      file: {},
-      data: {}
-    };
-  }
-  handleSubmit(event) {
+export default function Upload() {
+  // here we set state to grab the file info so we can reference its location later in the feeds (profile and main feed)
+  // we do this by using the useRef hook to grab the current state of the input[file]
+  const [fileinfo, setFileInfo] = useState({});
+  const fileInput = useRef();
+
+  // this is grabbing the context from our RootContext.js and grabbing the userState function
+  // we are doing this so we can pull the current logged in user info to put in the information in the post
+  const { userState } = useContext(RootContext);
+
+  // Here is the function that uploads the file upon submit
+  const handleClick = event => {
     event.preventDefault();
-    let file = this.fileInput.current.files[0];
-    let newFileName = this.fileInput.current.files[0].name;
-    this.setState(file);
-    console.log(file);
-    console.log(newFileName);
-    const config = {
-      bucketName: process.env.REACT_APP_AWS_BUCKET,
-      region: process.env.REACT_APP_AWS_REG,
-      dirName: process.env.REACT_APP_AWS_DIR,
-      accessKeyId: process.env.REACT_APP_AWS_ID,
-      secretAccessKey: process.env.REACT_APP_AWS_KEY
-    };
+    let file = fileInput.current.files[0];
+    let newFileName = fileInput.current.files[0].name;
+    const config = {};
     const ReactS3Client = new S3(config);
-    console.log(file);
-    ReactS3Client.uploadFile(file, newFileName).then(data =>
-      this.setState(data)
-    );
-  }
 
-  render() {
-    return (
+    ReactS3Client.uploadFile(file, newFileName).then(data => {
+      setFileInfo(data);
+      console.log(data);
+      if (data.status === 204) {
+        console.log("success");
+      } else {
+        console.log("fail");
+      }
+    });
+  };
+
+  // Here is the function that posts the data to mongodb then we pull this data into our profile and feed pages
+  const newPost = () => {
+    let body = {
+      body: inputs.body,
+      title: inputs.title,
+      link: fileinfo.location,
+      user: userState.name,
+      id: userState.id
+    };
+
+    fetch("/api/posts/newpost", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(body)
+    })
+      .then(res => res.json())
+      .then(data => console.log(data))
+      .catch(err => console.log(err));
+  };
+
+  const { inputs, handleInputChange, handleSubmit } = usePost(newPost);
+
+  // Here we render out the laout of the New Post page Steps to Post
+  return (
+    <>
       <div className='grid-option'>
-        <form onSubmit={this.handleSubmit}>
+        <div className='upload-title'>STEP: 1</div>
+        <form className='upload-steps' onSubmit={handleClick}>
           <label>
             Upload file:
-            <input type='file' ref={this.fileInput} />
+            <input type='file' ref={fileInput} accept='.mp3,audio/*' />
           </label>
           <br />
-          <button type='submit'>Submit</button>
+          <button type='submit'>Upload</button>
         </form>
-
-        <Link className='content-link' to={this.state.data.location}>
-          New Link
-        </Link>
       </div>
-    );
-  }
+      {/* Here is the dividing point between the Upload Steps */}
+      <div className='grid-option'>
+        <div className='upload-title'>STEP: 2</div>
+        <form onSubmit={handleSubmit} className='upload-steps'>
+          <input
+            placeholder='Title'
+            type='text'
+            name='title'
+            id='title'
+            onChange={handleInputChange}
+            value={inputs.title}
+          />
+          <textarea
+            placeholder='About'
+            type='text'
+            name='body'
+            id='body'
+            value={inputs.body}
+            onChange={handleInputChange}
+          />
+          <input type='submit' value='Submit' />
+        </form>
+      </div>
+    </>
+  );
 }
-
-export default Upload;
