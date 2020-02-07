@@ -18,7 +18,13 @@ export default function Upload() {
     event.preventDefault();
     let file = fileInput.current.files[0];
     let newFileName = fileInput.current.files[0].name;
-    const config = {};
+    const config = {
+      bucketName: "zstorm",
+      region: "us-west-2",
+      dirName: "media",
+      accessKeyId: "AKIAJQLGMBESY3XX6HUQ",
+      secretAccessKey: "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"
+    };
     const ReactS3Client = new S3(config);
 
     ReactS3Client.uploadFile(file, newFileName).then(data => {

@@ -6,6 +6,8 @@ function Feed() {
   const [post, setPost] = useState([]);
   const [postid, setPostID] = useState("");
   // const ref = useRef();
+  
+  
 
   const loadPosts = () => {
     fetch("/api/posts/oldpost/", {
