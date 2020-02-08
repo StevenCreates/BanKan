@@ -1,10 +1,12 @@
 import React from "react";
 import HomeNavbar from "../HomeNavbar";
+import { useHistory } from "react-router-dom";
 import { useSignUpForm } from "../hooks/SignUpHook";
 import "./CreateUser.css";
 import Footer from "../Footer";
 
 function CreateUser() {
+  let history = useHistory();
   const onSignUp = () => {
     fetch("/api/users/register", {
       method: "POST",
@@ -14,8 +16,26 @@ function CreateUser() {
       body: JSON.stringify(inputs)
     })
       .then(res => res.json())
-      .then(data => console.log(data))
-      .catch(err => console.log(err));
+      .then(data => {
+        console.log(data);
+        if (data.password === "Password must be at least 6 characters") {
+          alert("Password Must Be 6 Characters Long");
+        } else if (data.email === "Email already exists") {
+          alert("Email Already Exists!");
+        } else if (data.password2 === "Passwords must match") {
+          alert("Passwords must match");
+        } else {
+          alert("SUCCESS!!");
+          redirectUser();
+        }
+      });
+
+    const redirectUser = () => {
+      // here we use the useHistory hook to push the user to /feed if they login successfully
+      history.push("/login");
+    };
+
+    // .catch(err => console.log(err));
     console.log(inputs);
     console.log(`User Created! Name: ${inputs.name} Email: ${inputs.email}`);
   };

@@ -21,7 +21,7 @@ router.post("/newpost", async (req, res) => {
     title: req.body.title,
     user: req.body.user,
     link: req.body.link,
-    id: req.body.id,
+    user_id: req.body.id,
     body: req.body.body,
     timestamp: new Date().getTime()
   });

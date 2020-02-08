@@ -8,7 +8,7 @@ const UploadPage = () => {
   return (
     <div>
       <LoggedinNavbar />
-      <div className='container grid-container'>
+      <div className='grid-container'>
         <Upload />
       </div>
       <Footer />

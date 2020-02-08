@@ -9,26 +9,25 @@ router.get("/oldcomment", async (req, res) => {
   res.status(200).json(comments);
 });
 
-router.comment("/findme/", async (req, res) => {
-  // const { id } = req.params;
+router.post("/findme", async (req, res) => {
+  const { id } = req.body;
   // const query = req.params.query;
-  const comments = await Comment.find({ id: "5e3393491e1004801d8f500f" });
+  const comments = await Comment.find({ id });
   res.status(200).json(comments);
 });
 
-router.comment("/newcomment", async (req, res) => {
+router.post("/newcomment", async (req, res) => {
   const newComment = new Comment({
-    title: req.body.title,
-    user: req.body.user,
-    link: req.body.link,
+    comment: req.body.comment,
+    user_id: req.body.user,
+    name: req.body.name,
     id: req.body.id,
-    body: req.body.body,
     timestamp: new Date().getTime()
   });
 
   try {
-    const comment = await newComment.save();
-    return res.status(201).json(comment);
+    const post = await newComment.save();
+    return res.status(201).json(post);
   } catch (err) {
     return res.status(400).send(err);
   }

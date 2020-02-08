@@ -6,20 +6,15 @@ const CommentSchema = new Schema({
   id: {
     type: String
   },
-  title: {
-    type: String,
-    requuired: true
-  },
-  link: {
+  comment: {
     type: String
   },
-  
-  body: {
+  userid: {
     type: String
   },
-  user: {
+  name: {
     type: String
   }
 });
 
-module.exports = mongoose.model("Comments", CommentSchema);
+module.exports = mongoose.model("Comment", CommentSchema);

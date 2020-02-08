@@ -10,19 +10,19 @@ export default function SecondGrid() {
           <p>Create User</p>
         </div>
         <div className='second-option'>
-          <i class='fal fa-upload'></i>
+          <i className='fal fa-upload'></i>
           <p>Upload</p>
         </div>
         <div className='second-option'>
-          <i class='fal fa-mind-share'></i>
+          <i className='fal fa-mind-share'></i>
           <p>Share</p>
         </div>
         <div className='second-option'>
-          <i class='fal fa-comments-alt'></i>
+          <i className='fal fa-comments-alt'></i>
           <p>Discuss</p>
         </div>
         <div className='second-option'>
-          <i class='fal fa-glass-cheers'></i>
+          <i className='fal fa-glass-cheers'></i>
           <p>PARTY!</p>
         </div>
       </div>

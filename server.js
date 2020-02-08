@@ -5,10 +5,12 @@ const passport = require("passport");
 const users = require("./routes/api/users");
 const posts = require("./routes/api/posts");
 const profile = require("./routes/api/profile");
+const comments = require("./routes/api/comments");
 const app = express();
 const path = require("path");
 var cors = require("cors");
-require("dotenv").config();
+const dotenv = require("dotenv");
+dotenv.config();
 
 app.use(cors());
 
@@ -35,6 +37,7 @@ require("./config/passport")(passport); // Routes
 app.use("/api/users", users);
 app.use("/api/posts", posts);
 app.use("/api/profile", profile);
+app.use("/api/comments", comments);
 
 app.get("*", function(req, res) {
   res.sendFile(path.join(__dirname, "./client/build/index.html"));

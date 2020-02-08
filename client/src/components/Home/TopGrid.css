@@ -10,6 +10,9 @@
   overflow: hidden;
 }
 
+.full-page {
+}
+
 div.container-items {
   background: var(--box-color);
   color: #fff;

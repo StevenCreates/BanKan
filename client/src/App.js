@@ -10,7 +10,6 @@ import RootContext from "./context/RootContext";
 import Profile from "./components/Profile/Profile";
 import { AuthenticatedRoute } from "./AuthenticateRoute";
 import ProfileCard from "./components/Profile/ProfileCard";
-import Zapp from "./components/comment/TestComment";
 
 function App() {
   return (
@@ -21,7 +20,6 @@ function App() {
           <Route path='/login' component={Login} />
           <Route path='/createuser' component={CreateUser} />
           <Route path='/aboutme' component={ProfileCard} />
-          <Route path='/shit' component={Zapp}/>
           <AuthenticatedRoute>
             <Route path='/feed' component={Feed} />
             <Route path='/upload' component={UploadPage} />

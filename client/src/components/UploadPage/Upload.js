@@ -19,11 +19,11 @@ export default function Upload() {
     let file = fileInput.current.files[0];
     let newFileName = fileInput.current.files[0].name;
     const config = {
-      bucketName: "zstorm",
-      region: "us-west-2",
-      dirName: "media",
-      accessKeyId: "AKIAJQLGMBESY3XX6HUQ",
-      secretAccessKey: "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"
+      bucketName: process.env.REACT_APP_BUCKET_NAME,
+      region: process.env.REACT_APP_REGION,
+      dirName: process.env.REACT_APP_DIR_NAME,
+      accessKeyId: process.env.REACT_APP_ACCESS_ID,
+      secretAccessKey: process.env.REACT_APP_ACCESS_KEY
     };
     const ReactS3Client = new S3(config);
 
@@ -45,7 +45,7 @@ export default function Upload() {
       title: inputs.title,
       link: fileinfo.location,
       user: userState.name,
-      id: userState.id
+      user_id: userState.id
     };
 
     fetch("/api/posts/newpost", {
