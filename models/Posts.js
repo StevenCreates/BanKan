@@ -13,28 +13,13 @@ const PostSchema = new Schema({
   link: {
     type: String
   },
-  //   comments: {
-  //     type: [
-  //       {
-  //         commenterId: String,
-  //         text: String,
-  //         timestamp: Number
-  //       }
-  //     ],
-  //     required: true
-  //   },
-  //   likers: {
-  //     type: [String],
-  //     required: true
-  //   },
-  //   likesCount: {
-  //     type: Number,
-  //     required: true
-  //   },
   body: {
     type: String
   },
   user: {
+    type: String
+  },
+  user_id: {
     type: String
   }
 });

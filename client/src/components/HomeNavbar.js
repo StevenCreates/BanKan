@@ -1,10 +1,8 @@
-import React, { useContext, useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { RootContext } from "../context/RootContext";
 
 function HomeNavbar() {
-  const { userState } = useContext(RootContext);
-
   return (
     <div className='nav-bar'>
       <div className='nav-link'>

@@ -6,7 +6,7 @@ import SecondGrid from "./SecondGrid";
 
 function Home() {
   return (
-    <div>
+    <div className='full-height'>
       <HomeNavbar />
       <TopGrid />
       <SecondGrid />

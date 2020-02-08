@@ -4,6 +4,7 @@
   grid-auto-flow: column;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 5px;
+  margin-bottom: 40vh;
 }
 
 .grid-option {

@@ -8,7 +8,7 @@ export default function Footer() {
     <div className='footer-container'>
       <div className='footer-option'>
         <a href='https://github.com/Tecdef/BanKan'>
-          <i class='fab fa-github social-icon'></i>
+          <i className='fab fa-github social-icon'></i>
         </a>
       </div>
       <div className='footer-option'></div>

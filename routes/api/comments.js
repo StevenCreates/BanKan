@@ -1,33 +1,32 @@
 const express = require("express");
 const { ObjectID } = require("mongodb");
-const Post = require("../../models/Posts");
+const Comment = require("../../models/Comments");
 
 const router = new express.Router();
 
-router.get("/oldpost", async (req, res) => {
-  const posts = await Post.find().sort({ timestamp: -1 });
-  res.status(200).json(posts);
+router.get("/oldcomment", async (req, res) => {
+  const comments = await Comment.find().sort({ timestamp: -1 });
+  res.status(200).json(comments);
 });
 
-router.post("/findme/", async (req, res) => {
-  // const { id } = req.params;
+router.post("/findme", async (req, res) => {
+  const { id } = req.body;
   // const query = req.params.query;
-  const posts = await Post.find({ id: "5e3393491e1004801d8f500f" });
-  res.status(200).json(posts);
+  const comments = await Comment.find({ id });
+  res.status(200).json(comments);
 });
 
-router.post("/newpost", async (req, res) => {
-  const newPost = new Post({
-    title: req.body.title,
-    user: req.body.user,
-    link: req.body.link,
-    user_id: req.body.id,
-    body: req.body.body,
+router.post("/newcomment", async (req, res) => {
+  const newComment = new Comment({
+    comment: req.body.comment,
+    user_id: req.body.user,
+    name: req.body.name,
+    id: req.body.id,
     timestamp: new Date().getTime()
   });
 
   try {
-    const post = await newPost.save();
+    const post = await newComment.save();
     return res.status(201).json(post);
   } catch (err) {
     return res.status(400).send(err);
@@ -43,16 +42,16 @@ router.patch("/:id", (req, res) => {
 
   if (req.body.action === "like") {
     try {
-      return Post.findByIdAndUpdate(
+      return Comment.findByIdAndUpdate(
         id,
         {
           $inc: { likesCount: 1 },
           $addToSet: { likers: req.body.id }
         },
         { new: true },
-        (err, post) => {
+        (err, comment) => {
           if (err) return res.status(400).send(err);
-          return res.send(post);
+          return res.send(comment);
         }
       );
     } catch (err) {
@@ -61,16 +60,16 @@ router.patch("/:id", (req, res) => {
   }
   if (req.body.action === "unlike") {
     try {
-      return Post.findByIdAndUpdate(
+      return Comment.findByIdAndUpdate(
         id,
         {
           $inc: { likesCount: -1 },
           $pull: { likers: req.body.id }
         },
         { new: true },
-        (err, post) => {
+        (err, comment) => {
           if (err) return res.status(400).send(err);
-          return res.send(post);
+          return res.send(comment);
         }
       );
     } catch (err) {
@@ -80,7 +79,7 @@ router.patch("/:id", (req, res) => {
 
   if (req.body.action === "addComment") {
     try {
-      return Post.findByIdAndUpdate(
+      return Comment.findByIdAndUpdate(
         id,
         {
           $push: {
@@ -92,9 +91,9 @@ router.patch("/:id", (req, res) => {
           }
         },
         { new: true },
-        (err, post) => {
+        (err, comment) => {
           if (err) return res.status(400).send(err);
-          return res.send(post);
+          return res.send(comment);
         }
       );
     } catch (err) {
@@ -104,7 +103,7 @@ router.patch("/:id", (req, res) => {
 
   if (req.body.action === "deleteComment") {
     try {
-      return Post.findByIdAndUpdate(
+      return Comment.findByIdAndUpdate(
         id,
         {
           $pull: {
@@ -114,9 +113,9 @@ router.patch("/:id", (req, res) => {
           }
         },
         { new: true },
-        (err, post) => {
+        (err, comment) => {
           if (err) return res.status(400).send(err);
-          return res.send(post);
+          return res.send(comment);
         }
       );
     } catch (err) {
@@ -126,8 +125,8 @@ router.patch("/:id", (req, res) => {
 
   if (req.body.action === "editComment") {
     try {
-      return Post.findById(id, (err, post) => {
-        const { comments } = post;
+      return Comment.findById(id, (err, comment) => {
+        const { comments } = comment;
         const theComment = comments.find(comment =>
           comment._id.equals(req.body.commentId)
         );
@@ -135,9 +134,9 @@ router.patch("/:id", (req, res) => {
         if (!theComment) return res.status(404).send("Comment not found");
         theComment.text = req.body.text;
 
-        return post.save(error => {
+        return comment.save(error => {
           if (error) return res.status(500).send(error);
-          return res.status(200).send(post);
+          return res.status(200).send(comment);
         });
       });
     } catch (err) {
@@ -146,13 +145,13 @@ router.patch("/:id", (req, res) => {
   }
 
   try {
-    return Post.findByIdAndUpdate(
+    return Comment.findByIdAndUpdate(
       id,
       { $set: { text: req.body.text } },
       { new: true },
-      (err, post) => {
+      (err, comment) => {
         if (err) return res.status(400).send(err);
-        return res.send(post);
+        return res.send(comment);
       }
     );
   } catch (err) {
@@ -162,8 +161,8 @@ router.patch("/:id", (req, res) => {
 
 router.delete("/:id", async (req, res) => {
   try {
-    const post = await Post.findById(req.params.id);
-    await post.remove();
+    const comment = await Comment.findById(req.params.id);
+    await comment.remove();
     return res.json({ success: true });
   } catch (err) {
     return res.status(404).send(err);

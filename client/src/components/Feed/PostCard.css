@@ -1,0 +1,46 @@
+.current-comments {
+  border: white 1px solid;
+  background: lightgrey;
+  color: var(--box-color);
+  padding: 5px;
+  margin: 5px;
+}
+.name-comment {
+  border-bottom: 1px black solid;
+  display: inline-block;
+}
+.the-comment {
+  padding: 1vh;
+}
+
+.card {
+  background: white;
+  margin-left: 12%;
+  margin-right: 12%;
+  margin-top: 1vh;
+}
+
+.feed-container {
+  max-height: 90vh;
+  overflow: scroll;
+}
+.comment-field {
+  margin-left: 5px;
+  width: 100vw;
+}
+
+audio {
+  width: 50vw;
+  /* box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.4); */
+  border-radius: 4px;
+  transform: scale(1.05);
+  margin-left: 1vw;
+}
+
+.top-post {
+  text-align: center;
+}
+
+.feed-container {
+  margin-bottom: 10vh;
+}

@@ -4,8 +4,13 @@
 body {
   font-family: "Maven Pro", sans-serif;
   background: whitesmoke;
+  margin: 0;
+  height: 100vh;
 }
 /* start of grid */
+.full-height {
+  min-height: 100%;
+}
 
 :root {
   --box-color: #373142;
