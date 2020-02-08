@@ -1,0 +1,53 @@
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.create-container {
+  animation: 1s ease-out 0s 1 slideInFromLeft;
+  text-align: center;
+  width: 30vw;
+  height: 60vh;
+  margin: auto;
+  background: white;
+  font-size: 30px;
+  color: #373142;
+  margin-top: 2%;
+  box-shadow: var(--box-shadow);
+  margin-bottom: 40vh;
+}
+
+.create-text {
+  padding-bottom: 30px;
+  padding-top: 30px;
+}
+
+.create-container > form:nth-child(1) > button:nth-child(6) {
+  width: 20.7vw;
+  height: 5vh;
+  border: none;
+  background: #373142;
+  color: white;
+  font-size: 15px;
+  margin-top: 18px;
+}
+
+.create-container > form:nth-child(1) > button:nth-child(6):hover {
+  background: #ecd08d;
+  color: #373142;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+  background: whitesmoke;
+  border: none;
+  padding: 5px;
+  width: 20vw;
+  height: 5vh;
+  margin-top: 1%;
+}

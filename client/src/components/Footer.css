@@ -1,0 +1,38 @@
+.footer-container {
+  display: grid;
+  grid-auto-flow: row;
+  grid-template-columns: repeat(5, 5fr);
+  position: sticky;
+  bottom: 0;
+  width: 100vw;
+  text-align: center;
+  margin-top: -50px;
+}
+
+.footer-option {
+  background: #373142;
+  color: white;
+  line-height: 90px;
+}
+
+.social-icon {
+  font-size: 24px;
+  color: white;
+}
+
+.social-icon:visited {
+  color: white;
+}
+
+@media (max-width: 640px) {
+  .footer-container {
+    margin-top: 0.25%;
+  }
+
+  .footer-option {
+    line-height: 60px;
+  }
+  .logged-in-as {
+    display: none;
+  }
+}

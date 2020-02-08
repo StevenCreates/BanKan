@@ -1,0 +1,81 @@
+.topgrid-container {
+  font-family: "Audiowide", cursive;
+  margin-top: 5px;
+  display: grid;
+  grid-auto-flow: row;
+  grid-template-columns: repeat(2, 50vw);
+  grid-gap: 5px;
+  margin-left: 0.25%;
+  margin-right: 0.25%;
+  overflow: hidden;
+}
+
+.full-page {
+}
+
+div.container-items {
+  background: var(--box-color);
+  color: #fff;
+}
+
+.fun-text {
+  background: transparent !important;
+  text-align: center;
+}
+
+.text-one {
+  font-family: "Audiowide", cursive;
+  font-size: 70px;
+  color: #373142;
+}
+
+.text-two {
+  font-family: "Audiowide", cursive;
+  font-size: 70px;
+  color: #ecd08d;
+}
+
+.home-small {
+  font-family: "Audiowide", cursive;
+  color: white;
+  font-size: 39px;
+  margin-top: 0;
+}
+.home-text {
+  font-size: 80px;
+  margin-bottom: 0;
+}
+
+.home-title {
+  background: url("../../assets/james-stamler-k3heD_KwH0A-unsplash.jpg");
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+  color: white;
+  font-family: "Audiowide", cursive;
+}
+
+@media (max-width: 670px) {
+  .topgrid-container {
+    transition: grid-template-columns 1s ease-in-out;
+    transition: grid-auto-flow 1s ease-in-out;
+    grid-template-columns: repeat(1, 100vw);
+    grid-auto-flow: row;
+  }
+  .home-title {
+    transition: font-size 1s ease-in-out;
+    font-size: 60px !important;
+  }
+  .home-text {
+    transition: font-size 1s ease-in-out;
+    font-size: 30px !important;
+  }
+  .text-one {
+    transition: font-size 1s ease-in-out;
+    font-size: 30px !important;
+  }
+  .text-two {
+    transition: font-size 1s ease-in-out;
+    font-size: 30px !important;
+  }
+}
