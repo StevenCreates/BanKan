@@ -20,9 +20,9 @@ function App() {
           <Route path='/login' component={Login} />
           <Route path='/createuser' component={CreateUser} />
           <Route path='/aboutme' component={ProfileCard} />
+          <Route path='/feed' component={Feed} />
+          <Route path='/upload' component={UploadPage} />
           <AuthenticatedRoute>
-            <Route path='/feed' component={Feed} />
-            <Route path='/upload' component={UploadPage} />
             <Route path='/profile' component={Profile} />
           </AuthenticatedRoute>
           <Route component={Error} />

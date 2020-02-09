@@ -25,6 +25,16 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 
+// CONNECTING TO MONGO // AND REQUIRING KEYS
+const db = require("./config/keys").mongoURI;
+mongoose
+  .connect(db, {
+    useUnifiedTopology: true,
+    useNewUrlParser: true
+  })
+  .then(() => console.log("MongoDB successfully connected"))
+  .catch(err => console.log(err));
+
 //SENDING DATA TO INDEX.HTML
 app.get("*", function(req, res) {
   res.sendFile(path.join(__dirname, "./client/build/index.html"));
