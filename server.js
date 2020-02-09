@@ -12,14 +12,23 @@ var cors = require("cors");
 const dotenv = require("dotenv");
 dotenv.config();
 
-app.use(cors());
-app.disable("etag");
+// Define middleware here
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
-app.use(
-  bodyParser.urlencoded({
-    extended: false
-  })
-);
+// Serve up static assets (usually on heroku)
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+}
+
+app.use(cors());
+// app.disable("etag");
+
+// app.use(
+//   bodyParser.urlencoded({
+//     extended: false
+//   })
+// );
 app.use(bodyParser.json());
 // DB Config
 const db = require("./config/keys").mongoURI;
