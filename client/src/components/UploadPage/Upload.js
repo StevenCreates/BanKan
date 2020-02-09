@@ -4,16 +4,11 @@ import { usePost } from "../hooks/PostHook";
 import { RootContext } from "../../context/RootContext";
 
 export default function Upload() {
-  // here we set state to grab the file info so we can reference its location later in the feeds (profile and main feed)
-  // we do this by using the useRef hook to grab the current state of the input[file]
   const [fileinfo, setFileInfo] = useState({});
   const fileInput = useRef();
-
-  // this is grabbing the context from our RootContext.js and grabbing the userState function
-  // we are doing this so we can pull the current logged in user info to put in the information in the post
   const { userState } = useContext(RootContext);
 
-  // Here is the function that uploads the file upon submit
+  // UPLOAD FUNCTION
   const handleClick = event => {
     event.preventDefault();
     let file = fileInput.current.files[0];
@@ -38,8 +33,8 @@ export default function Upload() {
     });
   };
 
-  // Here is the function that posts the data to mongodb then we pull this data into our profile and feed pages
-  const newPost = () => {
+  // NEW POST
+  const newPost = async () => {
     let body = {
       body: inputs.body,
       title: inputs.title,
@@ -48,7 +43,7 @@ export default function Upload() {
       user_id: userState.id
     };
 
-    fetch("/api/posts/newpost", {
+    const res = await fetch("/api/posts/newpost", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
