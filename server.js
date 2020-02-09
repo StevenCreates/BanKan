@@ -1,6 +1,8 @@
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
+const passport = require("passport");
+const path = require("path");
 
 //REQUIRING ROUTES
 const users = require("./routes/api/users");
