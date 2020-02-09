@@ -16,7 +16,16 @@ app.use(
     extended: false
   })
 );
-app.use(bodyParser.json());
+
+const PORT = process.env.PORT || 3001;
+const app = express();
+const apiRoutes = require("./routes/apiRoutes");
+
+// Define middleware here
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+// app.use(bodyParser.json());
 // DB Config
 const db = require("./config/keys").mongoURI;
 // Connect to MongoDB
@@ -40,5 +49,6 @@ app.get("*", function(req, res) {
   res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
 
-const port = process.env.PORT || 3001; // process.env.port is Heroku's port if you choose to deploy the app there
-app.listen(port, () => console.log(`Server up and running on port ${port} !`));
+app.listen(PORT, function() {
+  console.log(`🌎 ==> API server now on port ${PORT}!`);
+});
