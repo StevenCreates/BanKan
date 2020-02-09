@@ -13,6 +13,7 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 app.use(cors());
+app.disable("etag");
 
 app.use(
   bodyParser.urlencoded({
