@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const mongoose = require("mongoose");
 
 //REQUIRING ROUTES
 // const users = require("./routes/api/users");
