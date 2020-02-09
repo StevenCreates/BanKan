@@ -3,16 +3,10 @@ const app = express();
 const mongoose = require("mongoose");
 
 //REQUIRING ROUTES
-// const users = require("./routes/api/users");
+const users = require("./routes/api/users");
 const posts = require("./routes/api/posts");
 const profile = require("./routes/api/profile");
 const comments = require("./routes/api/comments");
-
-//USING ROUTES
-// app.use("/api/users", users);
-app.use("/api/posts", posts);
-app.use("/api/profile", profile);
-app.use("/api/comments", comments);
 
 //PORT
 const PORT = process.env.PORT || 3001;
@@ -35,6 +29,16 @@ mongoose
   })
   .then(() => console.log("MongoDB successfully connected"))
   .catch(err => console.log(err));
+
+//USING ROUTES
+app.use("/api/users", users);
+app.use("/api/posts", posts);
+app.use("/api/profile", profile);
+app.use("/api/comments", comments);
+
+// PASSPORT
+app.use(passport.initialize());
+require("./config/passport")(passport);
 
 //SENDING DATA TO INDEX.HTML
 app.get("*", function(req, res) {

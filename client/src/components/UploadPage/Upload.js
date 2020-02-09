@@ -34,7 +34,7 @@ export default function Upload() {
   };
 
   // NEW POST
-  const newPost = async () => {
+  const newPost = () => {
     let body = {
       body: inputs.body,
       title: inputs.title,
@@ -43,7 +43,7 @@ export default function Upload() {
       user_id: userState.id
     };
 
-    const res = await fetch("/api/posts/newpost", {
+    fetch("/api/posts/newpost", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
