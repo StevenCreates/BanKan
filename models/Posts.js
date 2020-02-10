@@ -21,6 +21,9 @@ const PostSchema = new Schema({
   },
   user_id: {
     type: String
+  },
+  profileid: {
+    type: String
   }
 });
 

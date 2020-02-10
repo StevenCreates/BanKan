@@ -1,3 +1,38 @@
 .profile-container {
-  margin-bottom: 40vh;
+  margin-top: 2vh;
+  margin-left: 1vh;
+  margin-right: 1vh;
+  display: grid;
+  margin-bottom: 80vh;
+  grid-template-columns: repeat(2, 2fr);
+  grid-gap: 9px;
+}
+
+.name-current {
+  font-size: 69px;
+  font-weight: bold;
+  font-family: "Audiowide", cursive;
+}
+
+.profile-posts {
+  margin-top: 1vh;
+  background: white;
+}
+
+.my-post-text {
+  font-size: 50px;
+  font-weight: bold;
+}
+.upload-profile {
+  background: white;
+}
+
+.about-container {
+  background: white;
+  box-shadow: var(--box-shadow);
+}
+
+.about-info {
+  color: var(--box-color);
+  background: #ecd08d;
 }

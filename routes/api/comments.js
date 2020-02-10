@@ -11,7 +11,7 @@ router.get("/oldcomment", async (req, res) => {
 
 router.post("/findme", async (req, res) => {
   const { id } = req.body;
-  // const query = req.params.query;
+  console.log(id);
   const comments = await Comment.find({ id });
   res.status(200).json(comments);
 });

@@ -1,13 +1,15 @@
 import React, { useRef, useState, useContext } from "react";
 import { usePost } from "../hooks/PostHook";
+import { useHistory } from "react-router-dom";
 import { RootContext } from "../../context/RootContext";
 import "./PostCard.css";
 
 const PostCard = ({ post }) => {
   const [show, toggleShow] = useState(false);
   const [postId, setPostID] = useState("");
-  const { userState } = useContext(RootContext);
+  const { userState, setUsersProfile } = useContext(RootContext);
   const [currentComments, setCurrentComments] = useState([]);
+  let history = useHistory();
   const ref = useRef();
 
   const thisFunctionDoesIt = () => {
@@ -61,19 +63,29 @@ const PostCard = ({ post }) => {
 
   const { inputs, handleInputChange, handleSubmit } = usePost(submitComment);
 
+  const visitProfile = () => {
+    console.log(post.profileid);
+    let profilecontext = post.profileid;
+    setUsersProfile(profilecontext);
+    history.push("/user");
+  };
+
   return (
     <div>
-      <div ref={ref} user={post.user_id} id={post._id} className='card'>
+      <div
+        ref={ref}
+        profileid={post.profileid}
+        user={post.user_id}
+        id={post._id}
+        className='card'>
         <div className='top-post'>
           <div>Title:{post.title}</div>
           <audio controls>
             <source src={post.link} type='audio/mp3'></source>
           </audio>
         </div>
-        <div>Author:{post.user}</div>
+        <button onClick={visitProfile}>Author:{post.user}</button>
         <div>{post.body}</div>
-
-        {/* <embed href={post.link}>Listen!</embed> */}
         <button onClick={thisFunctionDoesIt}>Comment</button>
         {show && (
           <div>

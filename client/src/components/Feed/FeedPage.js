@@ -29,6 +29,7 @@ export default function FeedPage() {
     <div className='feed-container'>
       {post.map(post => (
         <PostCard
+          key={post.title}
           id={post.id}
           post={post}
           onImageClick={onImageClick}></PostCard>

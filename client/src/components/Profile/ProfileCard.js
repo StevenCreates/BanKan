@@ -1,32 +1,25 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useContext, useState } from "react";
 import { useUpdateProfile } from "../hooks/ProfileHook";
-import S3 from "react-aws-s3";
-import HomeNavbar from "../HomeNavbar";
-import Footer from "../Footer";
+import { RootContext } from "../../context/RootContext";
 
 function ProfileCard() {
+  const { userState } = useContext(RootContext);
+  const [show, toggleShow] = useState(false);
   const [profile, setProfile] = useState([]);
-  const [fileinfo, setFileInfo] = useState({});
-  const fileInput = useRef();
-
-  const handleClick = event => {
-    event.preventDefault();
-    let file = fileInput.current.files[0];
-    let newFileName = fileInput.current.files[0].name;
-    const config = {};
-    const ReactS3Client = new S3(config);
-
-    ReactS3Client.uploadFile(file, newFileName).then(data => {
-      setFileInfo(data);
-      console.log(data);
-    });
-  };
 
   const updateProfile = () => {
-    console.log(inputs);
+    let body = {
+      id: userState.id,
+      about: inputs.about,
+      name: userState.name
+    };
+    console.log(body);
     fetch("/api/profile/newprofile/", {
       method: "POST",
-      body: JSON.stringify(inputs)
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(body)
     })
       .then(res => res.json())
       .then(data => {
@@ -40,43 +33,29 @@ function ProfileCard() {
     updateProfile
   );
 
-  useEffect(() => {
-    updateProfile();
-  }, []);
-
   return (
     <div>
-      <HomeNavbar />
-      <div className='login-container'>
-        <form onSubmit={handleClick}>
-          <p className='login-text'>Login</p>
-          <div>
-            <input
-              ref={fileInput}
-              placeholder='Avatar'
-              type='file'
-              name='Avatar'
-              onChange={handleInputChange}
-              value={inputs.Avatar}
-            />
-          </div>
-          <div>
-            <input
-              placeholder='About'
-              type='text'
-              name='About'
-              onChange={handleInputChange}
-              value={inputs.about}
-              required
-            />
-          </div>
+      <button onClick={() => toggleShow(!show)}>Update About Me</button>
+      {show && (
+        <div className='upload-profile'>
+          {/* onSubmit={handleClick} add back if needed */}
+          <form onSubmit={handleSubmit}>
+            <p className='update-profile-style'>Update Profile</p>
+            <div>
+              <input
+                placeholder='About'
+                type='text'
+                name='about'
+                onChange={handleInputChange}
+                value={inputs.about}
+                required
+              />
+            </div>
 
-          <button onSubmit={handleSubmit} type='submit'>
-            Login
-          </button>
-        </form>
-      </div>
-      <Footer />
+            <button type='submit'>Update</button>
+          </form>
+        </div>
+      )}
     </div>
   );
 }

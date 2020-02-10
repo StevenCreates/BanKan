@@ -6,12 +6,12 @@ const ProfileSchema = new Schema({
   about: {
     type: String
   },
-  avatar: {
+  id: {
     type: String
   },
-  sociallinks: {
+  name: {
     type: String
   }
 });
 
-module.exports = mongoose.model("Posts", PostSchema);
+module.exports = mongoose.model("Profile", ProfileSchema);

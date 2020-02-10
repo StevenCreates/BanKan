@@ -12,6 +12,15 @@ export default ({ children }) => {
     authenticated: false
   });
 
+  const [usersProfile, setUsersProfile] = useState({
+    id: 0,
+    user: ""
+  });
+
+  useEffect(() => {
+    window.localStorage.setItem("usersProfile", usersProfile.id);
+  }, [usersProfile]);
+
   useEffect(() => {
     window.localStorage.setItem("success", userState.success);
     window.localStorage.setItem("token", userState.token);
@@ -23,7 +32,9 @@ export default ({ children }) => {
     userState,
     setUser,
     setAuthenticated,
-    authenticated
+    authenticated,
+    usersProfile,
+    setUsersProfile
   };
   return (
     <RootContext.Provider value={defaultContext}>

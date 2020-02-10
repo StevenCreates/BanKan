@@ -35,12 +35,14 @@ export default function Upload() {
 
   // NEW POST
   const newPost = () => {
+    console.log(userState);
     let body = {
       body: inputs.body,
       title: inputs.title,
       link: fileinfo.location,
       user: userState.name,
-      user_id: userState.id
+      profileid: userState.id,
+      id: userState.id
     };
 
     fetch("/api/posts/newpost", {

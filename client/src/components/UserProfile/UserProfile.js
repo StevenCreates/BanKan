@@ -2,18 +2,22 @@ import React, { useEffect, useState, useContext } from "react";
 import LoggedinNavbar from "../LoggedinNavbar";
 import Footer from "../Footer";
 import { RootContext } from "../../context/RootContext";
-import "./Profile.css";
-import ProfileCard from "./ProfileCard";
+import "../Profile/Profile.css";
 
-function Profile() {
-  const { userState } = useContext(RootContext);
-  const [post, setPost] = useState([]);
-  const [profile, setProfile] = useState([]);
+function UserProfile() {
+  const { usersProfile } = useContext(RootContext);
+  const [userPost, setUserPost] = useState([]);
+  const [userProfile, setUserProfile] = useState([]);
 
   const loadPosts = () => {
+    console.log({ usersProfile });
+    let fuckthis = { usersProfile };
+    let fuckthistoo = fuckthis.usersProfile;
+    console.log(fuckthistoo);
     let body = {
-      id: userState.id
+      id: fuckthistoo
     };
+    console.log(body);
     fetch("/api/posts/findme/", {
       method: "POST",
       headers: {
@@ -24,18 +28,18 @@ function Profile() {
       .then(res => res.json())
       .then(data => {
         console.log(data);
-        setPost(data);
+        setUserPost(data);
       })
       .catch(err => console.log(err));
   };
 
-  console.log(profile);
-
   const loadAbout = () => {
+    let fuckthis = { usersProfile };
+    let fuckthistoo = fuckthis.usersProfile;
+    console.log(fuckthistoo);
     let body = {
-      id: userState.id
+      id: fuckthistoo
     };
-    console.log(body);
     fetch("/api/profile/findme/", {
       method: "POST",
       headers: {
@@ -46,12 +50,11 @@ function Profile() {
       .then(res => res.json())
       .then(data => {
         console.log(data);
-        setProfile(data);
+        setUserProfile(data);
       })
       .catch(err => console.log(err));
   };
 
-  //this waits until the window has loaded to run the Load Post function
   useEffect(() => {
     loadPosts();
     loadAbout();
@@ -62,21 +65,21 @@ function Profile() {
       <LoggedinNavbar />
       <div className='profile-container'>
         <div className='profile-option about-container'>
-          <div className='name-current'>{userState.name}</div>
-          {profile.map(profile => (
-            <div className='about-info'>{profile.about}</div>
+          {userProfile.map(userProfile => (
+            <>
+              <div className='name-current'>{usersProfile.name}</div>
+              <div className='about-info'>{userProfile.about}</div>
+            </>
           ))}
-          <ProfileCard />
         </div>
-        {/* Here we are mapping the data we recieve from the .fetch into a feed card */}
         <div className='profile-option'>
-          <p className='my-post-text'>My Posts</p>
-          {post.map(post => (
+          <p className='my-post-text'>Users Posts</p>
+          {userPost.map(userPost => (
             <div className='profile-posts'>
-              <div>Creator: {post.user}</div>
-              <div>Title: {post.title}</div>
-              <a href={post.link}>Link</a>
-              <div>Body: {post.body}</div>
+              <div>Creator: {userPost.user}</div>
+              <div>Title: {userPost.title}</div>
+              <a href={userPost.link}>Link</a>
+              <div>Body: {userPost.body}</div>
             </div>
           ))}
         </div>
@@ -86,4 +89,4 @@ function Profile() {
   );
 }
 
-export default Profile;
+export default UserProfile;

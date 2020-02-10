@@ -10,6 +10,7 @@ import RootContext from "./context/RootContext";
 import Profile from "./components/Profile/Profile";
 import { AuthenticatedRoute } from "./AuthenticateRoute";
 import ProfileCard from "./components/Profile/ProfileCard";
+import UserProfile from "./components/UserProfile/UserProfile";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path='/createuser' component={CreateUser} />
           <Route path='/aboutme' component={ProfileCard} />
           <AuthenticatedRoute>
+            <Route path='/user' component={UserProfile} />
             <Route path='/feed' component={Feed} />
             <Route path='/upload' component={UploadPage} />
             <Route path='/profile' component={Profile} />
