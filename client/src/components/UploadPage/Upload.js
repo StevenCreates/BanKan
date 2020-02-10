@@ -2,11 +2,14 @@ import React, { useState, useRef, useContext } from "react";
 import S3 from "react-aws-s3";
 import { usePost } from "../hooks/PostHook";
 import { RootContext } from "../../context/RootContext";
+import { useHistory } from "react-router-dom";
 
 export default function Upload() {
   const [fileinfo, setFileInfo] = useState({});
   const fileInput = useRef();
   const { userState } = useContext(RootContext);
+
+  let history = useHistory();
 
   // UPLOAD FUNCTION
   const handleClick = event => {
@@ -54,7 +57,13 @@ export default function Upload() {
     })
       .then(res => res.json())
       .then(data => console.log(data))
+      .then(theRedirect())
       .catch(err => console.log(err));
+  };
+
+  const theRedirect = () => {
+    // here we use the useHistory hook to push the user to /feed if they login successfully
+    history.push("/feed");
   };
 
   const { inputs, handleInputChange, handleSubmit } = usePost(newPost);

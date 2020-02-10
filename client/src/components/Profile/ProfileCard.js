@@ -13,7 +13,6 @@ function ProfileCard() {
       about: inputs.about,
       name: userState.name
     };
-    console.log(body);
     fetch("/api/profile/newprofile/", {
       method: "POST",
       headers: {
@@ -23,7 +22,6 @@ function ProfileCard() {
     })
       .then(res => res.json())
       .then(data => {
-        console.log(data);
         setProfile(data);
       })
       .catch(err => console.log(err));

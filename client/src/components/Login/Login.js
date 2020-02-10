@@ -23,17 +23,14 @@ function Login() {
     })
       .then(res => res.json())
       .then(data => {
-        console.log(data);
         // grabs the response data from our api POST and if the password is correct and the user is authenticated
         // if the customer is successful we set context so that we can keep the user authenticated and their information when posting and loading profile
         if (data.passwordincorrect === "Password incorrect") {
           alert("Incorrect Username or Password");
-          console.log("shit failed");
         } else {
           setUser(data);
           setAuthenticated({ authenticated: true });
           theRedirect();
-          console.log("passed");
         }
       })
       .catch(err => console.log(err));

@@ -23,19 +23,15 @@ function Profile() {
     })
       .then(res => res.json())
       .then(data => {
-        console.log(data);
         setPost(data);
       })
       .catch(err => console.log(err));
   };
 
-  console.log(profile);
-
   const loadAbout = () => {
     let body = {
       id: userState.id
     };
-    console.log(body);
     fetch("/api/profile/findme/", {
       method: "POST",
       headers: {
@@ -45,7 +41,6 @@ function Profile() {
     })
       .then(res => res.json())
       .then(data => {
-        console.log(data);
         setProfile(data);
       })
       .catch(err => console.log(err));
@@ -54,8 +49,11 @@ function Profile() {
   //this waits until the window has loaded to run the Load Post function
   useEffect(() => {
     loadPosts();
-    loadAbout();
   }, []);
+
+  useEffect(() => {
+    loadAbout();
+  }, [profile]);
 
   return (
     <div>
