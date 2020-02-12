@@ -8,12 +8,15 @@ export default function Upload() {
   const [fileinfo, setFileInfo] = useState({});
   const fileInput = useRef();
   const { userState } = useContext(RootContext);
+  const [show, toggleShow] = useState(false);
+  const [uploading, toggleUpload] = useState(false);
 
   let history = useHistory();
 
   // UPLOAD FUNCTION
   const handleClick = event => {
     event.preventDefault();
+    toggleUpload(!uploading);
     let file = fileInput.current.files[0];
     let newFileName = fileInput.current.files[0].name;
     const config = {
@@ -29,7 +32,7 @@ export default function Upload() {
       setFileInfo(data);
       console.log(data);
       if (data.status === 204) {
-        console.log("success");
+        toggleShow(!show);
       } else {
         console.log("fail");
       }
@@ -80,31 +83,36 @@ export default function Upload() {
           </label>
           <br />
           <button type='submit'>Upload</button>
+          {uploading && (
+            <div>Uploading... Next step will show when successful</div>
+          )}
         </form>
       </div>
       {/* Here is the dividing point between the Upload Steps */}
-      <div className='grid-option'>
-        <div className='upload-title'>STEP: 2</div>
-        <form onSubmit={handleSubmit} className='upload-steps'>
-          <input
-            placeholder='Title'
-            type='text'
-            name='title'
-            id='title'
-            onChange={handleInputChange}
-            value={inputs.title}
-          />
-          <textarea
-            placeholder='About'
-            type='text'
-            name='body'
-            id='body'
-            value={inputs.body}
-            onChange={handleInputChange}
-          />
-          <input type='submit' value='Submit' />
-        </form>
-      </div>
+      {show && (
+        <div className='grid-option'>
+          <div className='upload-title'>LAST STEP</div>
+          <form onSubmit={handleSubmit} className='upload-steps'>
+            <input
+              placeholder='Title'
+              type='text'
+              name='title'
+              id='title'
+              onChange={handleInputChange}
+              value={inputs.title}
+            />
+            <textarea
+              placeholder='About'
+              type='text'
+              name='body'
+              id='body'
+              value={inputs.body}
+              onChange={handleInputChange}
+            />
+            <input type='submit' value='Submit' />
+          </form>
+        </div>
+      )}
     </>
   );
 }
