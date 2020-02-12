@@ -65,6 +65,7 @@ function UserProfile() {
       <LoggedinNavbar />
       <div className='profile-container'>
         <div className='profile-option about-container'>
+          About User:
           {userProfile.map(userProfile => (
             <>
               <div className='name-current'>{usersProfile.name}</div>
