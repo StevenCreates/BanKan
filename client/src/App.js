@@ -11,6 +11,7 @@ import Profile from "./components/Profile/Profile";
 import { AuthenticatedRoute } from "./AuthenticateRoute";
 import ProfileCard from "./components/Profile/ProfileCard";
 import UserProfile from "./components/UserProfile/UserProfile";
+import Logout from "./Logout";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
             <Route path='/feed' component={Feed} />
             <Route path='/upload' component={UploadPage} />
             <Route path='/profile' component={Profile} />
+            <Route path='/logout' component={Logout} />
           </AuthenticatedRoute>
           <Route component={Error} />
         </Switch>
