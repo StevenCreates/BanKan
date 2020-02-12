@@ -1,4 +1,4 @@
-import React, { useRef, useState, useContext } from "react";
+import React, { useRef, useState, useContext, useEffect } from "react";
 import { usePost } from "../hooks/PostHook";
 import { useHistory } from "react-router-dom";
 import { RootContext } from "../../context/RootContext";
@@ -37,6 +37,10 @@ const PostCard = ({ post }) => {
       })
       .catch(err => console.log(err));
   };
+
+  useEffect(() => {
+    getComment();
+  }, [currentComments]);
 
   const submitComment = () => {
     console.log(inputs.comment);
